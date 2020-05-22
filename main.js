@@ -9,10 +9,7 @@ function dataObjectUpdated() {
     localStorage.setItem('todoList', JSON.stringify(dataObj));
 }
 
-function clearTodo() {
 
-    localStorage.clear();
-}
 
 function renderTodoList() {
     if (!dataObj.todo.length && !dataObj.completed.length) return;
@@ -84,6 +81,7 @@ function addItemToDom(text, completed) {
     complete.classList.add('complete');
     complete.innerHTML = completeSVG;
 
+
     // Event for complete list
     complete.addEventListener('click', function() {
         const item = this.parentNode.parentNode, 
@@ -145,3 +143,9 @@ document.getElementById('search-text').addEventListener('keypress', function(e){
         li[i].style.display = (text.toUpperCase().indexOf(searchChar)) > -1 ? 'block' : 'none';
     }
 })
+
+function clearTodo() {
+    const list = document.querySelector('ul.todo');
+    list.innerHTML = '';
+    localStorage.clear();   
+}
